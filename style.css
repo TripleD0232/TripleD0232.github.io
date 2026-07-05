@@ -1,0 +1,541 @@
+/* ============================================
+   Design System — Custom Properties
+   ============================================ */
+:root {
+  /* Colors — Light main content, dark sidebar (like Lucy's site) */
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9fa;
+  --bg-sidebar: #1a2332;
+  --accent: #4a7c96;
+  --accent-hover: #5a9ab5;
+  --text-primary: #333;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --text-sidebar: #ccc;
+  --text-sidebar-muted: rgba(255, 255, 255, 0.5);
+  --border-subtle: #ebebeb;
+  --border-card: #e0e0e0;
+
+  /* Typography */
+  --font-sans: 'Noto Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Roboto Slab', Georgia, serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Layout */
+  --sidebar-width: 21rem;
+  --content-max-width: 52rem;
+  --radius-sm: 0.5rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 42em) {
+  html { font-size: 16px; }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.75;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* ============================================
+   Layout — Two Column
+   ============================================ */
+.site-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============================================
+   Sidebar — Dark with starry background
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--bg-sidebar);
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 50%, rgba(255,255,255,0.15) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 10% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    linear-gradient(180deg, #0d1b2a 0%, #1b2838 50%, #1a2332 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+/* Subtle gradient overlay on sidebar for depth */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile picture */
+.profile-pic-wrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: var(--space-lg);
+  background: #2a3a4a;
+  flex-shrink: 0;
+  transition: border-color var(--transition-base);
+}
+
+.profile-pic-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.profile-pic-wrapper img,
+.profile-pic-wrapper svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Name & title */
+.sidebar-name {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+.sidebar-tagline {
+  font-size: var(--font-size-sm);
+  color: var(--text-sidebar-muted);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  font-style: italic;
+}
+
+.sidebar-title {
+  display: none; /* Moved to main content in this style */
+}
+
+/* Sidebar nav — centered, underlined links */
+.sidebar-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-2xl);
+}
+
+.sidebar-nav a {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--text-sidebar);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  border-bottom: none;
+  transition: color var(--transition-fast);
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Social links — simple inline icons at bottom */
+.social-links {
+  display: flex;
+  gap: var(--space-lg);
+  margin-top: auto;
+  padding-top: var(--space-xl);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-sidebar);
+  border-bottom: none;
+  transition: color var(--transition-base);
+}
+
+.social-link:hover {
+  color: #fff;
+  border-bottom: none;
+}
+
+.social-link svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* ============================================
+   Main Content — Light background
+   ============================================ */
+.main-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: var(--space-3xl) var(--space-3xl);
+  max-width: calc(var(--content-max-width) + var(--space-3xl) * 2 + var(--sidebar-width));
+  background: var(--bg-primary);
+}
+
+/* ============================================
+   Section Styles
+   ============================================ */
+.section {
+  margin-bottom: var(--space-3xl);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+/* Horizontal rule under section titles */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin-top: var(--space-sm);
+}
+
+.section-text {
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.section-text + .section-text {
+  margin-top: var(--space-md);
+}
+
+/* ============================================
+   Fade-in Animation
+   ============================================ */
+.fade-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Research Interest Cards
+   ============================================ */
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.interest-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.interest-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.interest-card-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.interest-card h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.interest-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Publication Card — Two-column with thumbnail
+   ============================================ */
+.pub-card {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-base);
+}
+
+.pub-card:last-child {
+  border-bottom: none;
+}
+
+.pub-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pub-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pub-thumbnail-placeholder {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.pub-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.pub-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.pub-authors {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.pub-authors .me {
+  font-weight: 700;
+}
+
+.pub-venue {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.pub-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-xs);
+}
+
+.pub-links a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+}
+
+.pub-links a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.pub-links .sep {
+  color: var(--text-muted);
+  margin: 0 var(--space-sm);
+}
+
+.pub-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-sm);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Google Scholar Note
+   ============================================ */
+.scholar-note {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.scholar-note a {
+  color: var(--accent);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+/* ============================================
+   Responsive — Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .site-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .profile-pic-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .social-links {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .pub-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-thumbnail {
+    max-width: 300px;
+  }
+
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+}

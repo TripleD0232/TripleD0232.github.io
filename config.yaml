@@ -1,0 +1,33 @@
+# Website Configuration — Fill This In!
+# ======================================
+# Fill in the values below with your real information.
+# When you're ready, run: python3 build.py
+# It will read this file and update index.html automatically.
+
+
+# ── Profile ──────────────────────────────────────────
+# Path to your profile photo (place it in the assets/ folder)
+# Example: assets/oscar.jpg
+profile_photo: assets/profile-placeholder.svg
+
+# ── Social Links ─────────────────────────────────────
+# Leave blank or "TODO" for links you don't have yet
+
+email: TODO@example.com
+github: https://github.com/TODO
+linkedin: https://www.linkedin.com/in/chen-yu-lin-663b99236/
+x_twitter: https://x.com/triple_d_1028
+google_scholar: https://scholar.google.com/citations?user=TODO
+
+
+# ── Publication Links ────────────────────────────────
+# For the PhysCaP paper — add any extra links you want shown
+
+physcap_paper_url: TODO
+physcap_project_url: https://physcap.github.io/
+physcap_thumbnail: assets/physcap-thumbnail.png
+
+
+# ── Optional: Lab & Advisor Links ────────────────────
+lab_url: https://robot-learning.csie.ntu.edu.tw/
+advisor_url: TODO
