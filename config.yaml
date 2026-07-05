@@ -8,16 +8,16 @@
 # ── Profile ──────────────────────────────────────────
 # Path to your profile photo (place it in the assets/ folder)
 # Example: assets/oscar.jpg
-profile_photo: assets/profile-placeholder.svg
+profile_photo: assets/profile_pic.JPG
 
 # ── Social Links ─────────────────────────────────────
 # Leave blank or "TODO" for links you don't have yet
 
-email: TODO@example.com
-github: https://github.com/TODO
+email: https://tripled0232.github.io/
+github: https://tripled0232.github.io/
 linkedin: https://www.linkedin.com/in/chen-yu-lin-663b99236/
 x_twitter: https://x.com/triple_d_1028
-google_scholar: https://scholar.google.com/citations?user=TODO
+google_scholar: https://tripled0232.github.io/
 
 
 # ── Publication Links ────────────────────────────────
@@ -25,9 +25,9 @@ google_scholar: https://scholar.google.com/citations?user=TODO
 
 physcap_paper_url: TODO
 physcap_project_url: https://physcap.github.io/
-physcap_thumbnail: assets/physcap-thumbnail.png
+physcap_thumbnail: assets/physcap.pdf
 
 
 # ── Optional: Lab & Advisor Links ────────────────────
-lab_url: https://robot-learning.csie.ntu.edu.tw/
-advisor_url: TODO
+lab_url: https://nturll.xyz/about
+advisor_url: https://shaohua0116.github.io/
